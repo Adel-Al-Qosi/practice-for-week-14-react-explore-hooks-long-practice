@@ -5,9 +5,14 @@ import './ProductView.css'
 
 function ProductView({ products }) {
 
-  // TODO: Replace with state variable: done
-  const [sideOpen, setSideOpen] = useState(true);
+  const [sideOpen, setSideOpen] = useState(
+    localStorage.getItem('sideOpen') === 'true' ? true : false
+  );
   const [selectedProduct, setSelectedProduct] = useState()
+
+  useEffect(() => {
+    localStorage.setItem('sideOpen', sideOpen);
+  }, [sideOpen]);
 
   useEffect(() => {
     if (selectedProduct) setSideOpen(true)
